@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tianxin.dao.ArticleMapper">
+  <resultMap id="BaseResultMap" type="com.tianxin.entity.Article">
+    <id column="Id" jdbcType="INTEGER" property="id" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="tag" jdbcType="VARCHAR" property="tag" />
+    <result column="classify" jdbcType="VARCHAR" property="classify" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="createtime" jdbcType="VARCHAR" property="createtime" />
+    <result column="checkstatus" jdbcType="INTEGER" property="checkstatus" />
+    <result column="pageview" jdbcType="VARCHAR" property="pageview" />
+    <result column="recommend" jdbcType="VARCHAR" property="recommend" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    Id, title, tag, classify, content, createtime, checkstatus, pageview, recommend, 
+    url
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from article
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <select id="ListArticle" resultMap="BaseResultMap">
+        select * from  article order by  Id desc
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from article
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.tianxin.entity.Article">
+    insert into article (Id, title, tag, 
+      classify, content, createtime, 
+      checkstatus, pageview, recommend, 
+      url)
+    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{tag,jdbcType=VARCHAR}, 
+      #{classify,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, #{createtime,jdbcType=VARCHAR},
+      #{checkstatus,jdbcType=INTEGER}, #{pageview,jdbcType=VARCHAR}, #{recommend,jdbcType=VARCHAR}, 
+      #{url,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tianxin.entity.Article">
+    insert into article
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        Id,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="tag != null">
+        tag,
+      </if>
+      <if test="classify != null">
+        classify,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+      <if test="checkstatus != null">
+        checkstatus,
+      </if>
+      <if test="pageview != null">
+        pageview,
+      </if>
+      <if test="recommend != null">
+        recommend,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="tag != null">
+        #{tag,jdbcType=VARCHAR},
+      </if>
+      <if test="classify != null">
+        #{classify,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=VARCHAR},
+      </if>
+      <if test="checkstatus != null">
+        #{checkstatus,jdbcType=INTEGER},
+      </if>
+      <if test="pageview != null">
+        #{pageview,jdbcType=VARCHAR},
+      </if>
+      <if test="recommend != null">
+        #{recommend,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tianxin.entity.Article">
+    update article
+    <set>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="tag != null">
+        tag = #{tag,jdbcType=VARCHAR},
+      </if>
+      <if test="classify != null">
+        classify = #{classify,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        createtime = #{createtime,jdbcType=VARCHAR},
+      </if>
+      <if test="checkstatus != null">
+        checkstatus = #{checkstatus,jdbcType=INTEGER},
+      </if>
+      <if test="pageview != null">
+        pageview = #{pageview,jdbcType=VARCHAR},
+      </if>
+      <if test="recommend != null">
+        recommend = #{recommend,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tianxin.entity.Article">
+    update article
+    set title = #{title,jdbcType=VARCHAR},
+      tag = #{tag,jdbcType=VARCHAR},
+      classify = #{classify,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=VARCHAR},
+      checkstatus = #{checkstatus,jdbcType=INTEGER},
+      pageview = #{pageview,jdbcType=VARCHAR},
+      recommend = #{recommend,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
